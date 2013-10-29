@@ -1,0 +1,173 @@
+@charset "utf-8";
+/*------------------------------------------------------------
+	デフォルトスタイル
+------------------------------------------------------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	background: transparent;
+	border: 0;
+	outline: 0;
+	font-size: 1em;
+}
+
+body,
+table,
+input, textarea, select, option {
+	font-family: HiraKakuProN-W3; !important
+	font-size: 1em;
+}
+
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary {
+	display: block;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+:focus {
+	outline: 0;
+}
+
+ins {
+	text-decoration: none;
+}
+
+del {
+	text-decoration: line-through;
+}
+
+a:link {
+
+}
+
+a:visited {
+
+}
+
+a:hover {
+
+}
+
+a:active {
+
+}
+
+/*------------------------------------------------------------
+	レイアウト
+------------------------------------------------------------*/
+body {
+	text-align: center;
+	line-height: 1.5;
+}
+
+/*------------------------------------------------------------
+	ヘッダー
+------------------------------------------------------------*/
+#gHeader {
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	font-size: 1.38em;
+	background: #6da82d;
+	color: #fff;
+	filter:alpha(opacity=90);
+    -moz-opacity: 0.9;
+    opacity: 0.9;
+	border: none;
+	text-shadow: none;
+	font-weight: normal;
+	font-family: HiraKakuProN-W3;
+}
+
+/*------------------------------------------------------------
+	コンテンツ
+------------------------------------------------------------*/
+#chat {
+	margin: 0 auto;
+	background: #fff;
+}
+
+	#chat .comment{
+		padding: 15px 0;
+		width: 100%;
+		border-bottom: 1px solid #adadad;
+	}
+	
+	
+	#chat .comment:last-child{
+		border-bottom: none;
+	}
+	
+	#chat .comment img.icon{
+		float: left;
+		margin-right: 10px;
+		width: 59px;
+		height: 59px;
+	}
+	
+	#chat .comment p{
+		text-align: left;
+		font-size: 16px;
+		line-height: 21px;
+		overflow: auto;
+		zoom: 1;
+	}
+
+
+
+/*------------------------------------------------------------
+	フッター
+------------------------------------------------------------*/
+#gFooter {
+	width: 100%;
+	height: 60px;
+	background: #f9f9f9;
+	border-top: 1px solid #adadad;
+	margin-bottom: -30px;
+}
+	#gFooter form{
+		padding: 15px 15px;
+	}
+
+	#gFooter input[type="text"]{
+		float: left;
+		width: 70%;
+		height: 30px;
+		box-shadow: none;
+		border: 1px solid #e5e5e5;
+		border-radius: 3px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		font-size: 0.8em;
+		line-height: 30px;
+		background: #fff;
+	}
+	
+	#gFooter button{
+		float: right;
+		width: 25%;
+		background: none;
+		border: none;
+		font-size: 1.36em;
+		color: #7fbd3d;
+		cursor: pointer;
+		font-family: HiraKakuProN-W3;
+	}
+	#gFooter button:hover{
+		color: #e5e5e5;
+	}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title><%= title %></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link rel='stylesheet' href='/stylesheets/jquery.mobile-1.0.1.min.css' />
+<link rel='stylesheet' href='/stylesheets/layout.css' />
+<link rel='stylesheet' href='/stylesheets/general.css' />
+<script src="/javascripts/jquery.js"></script>
+<script src="/javascripts/jquery.mobile-1.0.1.min.js"></script>
+<script src="/javascripts/iscroll.js"></script>
+<script src="/javascripts/smartphone.js"></script>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/javascripts/date-utils.min.js"></script>
+
+<script>
+$.mobile.fixedToolbars.setTouchToggleEnabled(false);
+</script>
+
+<script>
+$(function () {
+	// コネクションを作る(通信の開始)
+	var socket		= io.connect();
+
+	/* チャット送信ボタンをクリックした */
+	$("#chatform").submit(function () {
+		// 送信するチャットの内容が取得できたら送信
+		var messageChat	= $("#chattext").val() || null;
+		if (messageChat) {
+			socket.emit("msg send", messageChat);
+		}
+		return false;
+	});
+
+	// メッセージ送信待ち
+	socket.on('msg push', function (msg) {
+		$('#chat').prepend($('<div><small>' + new Date().toFormat("HH24時MI分") + '</small> ' + msg + '</div>'));
+	});
+
+	// 初期接続待ち
+	socket.on('msg open', function(msg){
+		//DBが空っぽだったら
+		if(msg.length == 0){
+			return;
+		} else {
+			$('#chat').empty();
+			$.each(msg, function(key, value){
+				$('#chat').prepend($('<div><small>' + new Date(value.date).toFormat("YYYY年MM月DD HH24時MI分") + '</small> ' + value.message + '</div>'));
+			});
+		}
+	});
+});
+</script>
+
+</head>
+<body>
+<div data-role="page" id="top">
+	<!-- ヘッダー -->
+	<div data-role="header" data-position="fixed" id="gHeader">
+		チャット★ピク
+	</div>
+	<!-- コンテンツ -->
+	<div data-role="content" id="chat">
+		<!--
+		<div class="comment">
+			<img class="icon" src="images/icon_01.gif" width="59" height="59" />
+			<p>毎日ティアラを目指しているので、協力お願いします！　コメくれた方はお返しします！</p>
+		</div>
+		-->
+	</div>
+
+	<!-- フッター -->
+	<div data-role="footer" data-position="fixed" id="gFooter">
+		<form method="post" class="clearfix" id="chatform">
+		<input type="text" name="text" id="chattext" placeholder="メッセージを入力" data-role="none">
+		<button type="submit" data-role="none" id="chatbutton">送 信</button>
+	</form>
+	</div>
+</div>
+</body>
+</html>
